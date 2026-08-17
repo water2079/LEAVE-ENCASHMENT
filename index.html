@@ -1,129 +1,62 @@
-<!DOCTYPE html>
-<html lang="gu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>રજા રોકડ રૂપાંતર કેલ્ક્યુલેટર - ગુજરાત સરકાર</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        h2 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #34495e; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        button:hover { background-color: #2980b9; }
-        #result { margin-top: 25px; padding: 15px; background-color: #e8f6f3; border-left: 5px solid #1abc9c; display: none; }
-        .note { font-size: 12px; color: #7f8c8d; margin-top: 15px; }
-        .total-amount { font-size: 20px; font-weight: bold; color: #e74c3c; }
-    </style>
-</head>
-<body>
+<!DOCTYPE html><html lang="gu"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Leave Encashment Portal | ગુજરાત સરકાર</title>    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Hind+Vadodara:wght@400;600;700&display=swap" rel="stylesheet">    <style>        :root {            --primary: #0f172a;            --accent: #2563eb;            --bg: #f8fafc;        }
+         body {            margin: 0;            padding: 0;            background: var(--bg);            font-family: 'Hind Vadodara', sans-serif;        }
+         /* Without CLA Section Styles */        .w-body {             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);             min-height: 100vh;             display: flex;             justify-content: center;             align-items: center;             padding: 20px;         }        .w-container {             background: white;             padding: 40px;             border-radius: 16px;             box-shadow: 0 10px 30px rgba(0,0,0,0.15);             width: 100%;             max-width: 550px;         }        .w-header-box { text-align: center; margin-bottom: 30px; }        .w-h2 { color: #2c3e50; font-size: 1.5rem; margin-bottom: 5px; line-height: 1.4; }        .w-input-grid { display: grid; gap: 20px; margin-bottom: 25px; }        .w-input-group { display: flex; flex-direction: column; }        .w-label { margin-bottom: 8px; font-weight: 600; color: #34495e; font-size: 0.95rem; }        .w-input, .w-select { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; outline: none; }        .w-button { width: 100%; padding: 15px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }        .w-button:hover { background-color: #2980b9; }        #w-result { margin-top: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 10px; border: 1px solid #e0e0e0; display: none; }        .w-total-amount { font-size: 24px; font-weight: 800; color: #27ae60; }    </style></head><body>
+    <div id="without-cla-section">        <div class="w-body">            <div class="w-container">                <div class="w-header-box">                    <h2 class="w-h2">300 રજા રોકડ રૂપાંતર કેલ્ક્યુલેટર</h2>                    <div style="color:#7f8c8d; font-size:0.9rem;"></div>                </div>                                <div class="w-input-grid">                    <div class="w-input-group">                        <label class="w-label">નિવૃત્તિનો પ્રકાર:</label>                        <select class="w-select" id="case_type" onchange="toggleHPL()">                            <option value="normal">સામાન્ય નિવૃત્તિ (Normal Retirement)</option>                            <option value="resignation">રાજીનામું (Resignation)</option>                        </select>                    </div>                    <div class="w-input-group">                        <label class="w-label">મૂળ પગાર (Basic Pay):</label>                        <input type="number" class="w-input" id="basic" placeholder="દા.ત. 45000">                    </div>                    <div class="input-group">                        <label class="w-label">મોંઘવારી ભથ્થું (DA %):</label>                        <input type="number" class="w-input" id="da_percent" placeholder="દા.ત. 50">                    </div>                    <div class="w-input-group">                        <label class="w-label">પ્રાપ્ત હક રજા (EL) દિવસો:</label>                        <input type="number" class="w-input" id="el_days" placeholder="0">                    </div>                    <div class="w-input-group" id="hpl_input_group">                        <label class="w-label">કુલ અર્ધપગારી રજા (HPL) દિવસો:</label>                        <input type="number" class="w-input" id="hpl_days" placeholder="0">                    </div>                </div>
+                 <button class="w-button" onclick="calculate()">ગણતરી કરો</button>
+                 <div id="w-result">                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">                        <span>એક દિવસનો પગાર:</span>                        <b>₹ <span id="one_day_pay">0</span></b>                    </div>                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">                        <span>ગણતરીમાં લીધેલ EL:</span>                        <b><span id="calc_el_days">0</span> દિવસ</b>                    </div>                    <div id="hpl_result_row" style="display:flex; justify-content:space-between; margin-bottom:10px;">                        <span>ગણતરીમાં લીધેલ HPL:</span>                        <b><span id="calc_hpl_days">0</span> દિવસ</b>                    </div>                    <div style="text-align:center; border-top:2px dashed #bdc3c7; padding-top:15px; margin-top:15px;">                        <div style="font-size: 0.9rem; color: #7f8c8d;">કુલ મળવાપાત્ર રકમ</div>                        <div class="w-total-amount">₹ <span id="total_amt">0</span></div>                    </div>
 
-<div class="container">
-    <h2>રજા રોકડ રૂપાંતર કેલ્ક્યુલેટર</h2>
-    
-    <div class="input-group">
-        <label>નિવૃત્તિનો પ્રકાર:</label>
-        <select id="case_type" onchange="toggleHPL()">
-            <option value="normal">સામાન્ય નિવૃત્તિ (Normal Retirement)</option>
-            <option value="resignation">રાજીનામું (Resignation)</option>
-        </select>
-    </div>
+                     <div id="detailed_calculation" style="margin-top: 20px; padding: 15px; background-color: #eef2f7; border-radius: 8px; border-left: 4px solid #2563eb; font-size: 14px; color: #334155; line-height: 1.6;">
+                         <b style="color: #1e3a8a; display: block; margin-bottom: 8px; font-size: 15px;">📊 ગણતરીની વિગતો (Calculation Details):</b>
+                         <div id="calc_step_1"></div>
+                         <div id="calc_step_2"></div>
+                         <div id="calc_step_3"></div>
+                         <div id="calc_step_4"></div>
+                         <div id="calc_step_5" style="margin-top: 5px; font-weight: bold; color: #0f172a;"></div>
+                     </div>
+                </div>
+                 <div style="font-size: 13px; color: #7f8c8d; margin-top: 20px; background: #fff9e6; padding: 12px; border-radius: 6px; line-height: 1.6;" id="note_text">                    • નિયમ મુજબ EL + HPL મળીને વધુમાં વધુ 300 દિવસનું રૂપાંતર મળશે.<br>                    • HPL માટે અડધો પગાર ગણવામાં આવ્યો છે.                </div>            </div>        </div>    </div>
+    <script>        function toggleHPL() {            let type = document.getElementById('case_type').value;            let hplGroup = document.getElementById('hpl_input_group');            let note = document.getElementById('note_text');                        if (type === 'resignation') {                hplGroup.style.opacity = '0.4';                document.getElementById('hpl_days').disabled = true;                document.getElementById('hpl_days').value = "";                note.innerHTML = "<b>નોંધ:</b> રાજીનામાના કિસ્સામાં માત્ર EL ના 50% દિવસોનું જ રૂપાંતર મળે છે અને HPL ગણવામાં આવતી નથી.";            } else {                hplGroup.style.opacity = '1';                document.getElementById('hpl_days').disabled = false;                document.getElementById('hpl_days').value = "";                note.innerHTML = "• નિયમ મુજબ EL + HPL મળીને વધુમાં વધુ 300 દિવસનું રૂપાંતર મળશે.<br>• HPL માટે અડધો પગાર ગણવામાં આવ્યો છે.";            }        }
+         function calculate() {            let caseType = document.getElementById('case_type').value;            let basic = parseFloat(document.getElementById('basic').value) || 0;            let da_percent = parseFloat(document.getElementById('da_percent').value) || 0;            let el = parseInt(document.getElementById('el_days').value) || 0;            let hpl = parseInt(document.getElementById('hpl_days').value) || 0;
+             if(basic === 0) {                 alert("કૃપા કરીને મૂળ પગાર દાખલ કરો.");                 return;              }
+             let total_monthly = basic + (basic * da_percent / 100);            let per_day = total_monthly / 30;            
+             // Helper function for custom rounding logic (<= 0.50 rounds down, > 0.50 rounds up)
+             function applyCustomRound(value) {
+                 return (value % 1 <= 0.50) ? Math.floor(value) : Math.ceil(value);
+             }
 
-    <div class="input-group">
-        <label>મૂળ પગાર (Basic Pay):</label>
-        <input type="number" id="basic" value="50000">
-    </div>
+             // Applying the custom rounding logic to per_day calculation beforehand
+             per_day = applyCustomRound(per_day);
 
-    <div class="input-group">
-        <label>મોંઘવારી ભથ્થું (DA %):</label>
-        <input type="number" id="da_percent" value="58">
-    </div>
+             let final_el = 0;             let final_hpl = 0;
+             if (caseType === 'resignation') {                 final_el = el * 0.5;                 // Applying custom rounding to resignation EL days if it ends in .5
+                 final_el = applyCustomRound(final_el);
+                 final_hpl = 0;                 document.getElementById('hpl_result_row').style.display = 'none';              } else {                 final_el = Math.min(el, 300);                 let remaining_for_hpl = 300 - final_el;                 final_hpl = Math.min(hpl, remaining_for_hpl);                 document.getElementById('hpl_result_row').style.display = 'flex';              }
+             // Calculate absolute values first
+             let raw_el_amount = final_el * per_day;
+             let raw_hpl_amount = final_hpl * (per_day / 2);
 
-    <div class="input-group">
-        <label>સેવાપોથી મુજબ જમા પ્રાપ્ત હક રજા (EL) દિવસો:</label>
-        <input type="number" id="el_days" value="250">
-    </div>
+             // Apply custom rounding to intermediate calculations independently
+             let el_amount = applyCustomRound(raw_el_amount);
+             let hpl_amount = applyCustomRound(raw_hpl_amount);
 
-    <div class="input-group" id="hpl_input_group">
-        <label>સેવાપોથી મુજબ જમા અર્ધપગારી રજા (HPL) દિવસો:</label>
-        <input type="number" id="hpl_days" value="250">
-    </div>
+             // Final total calculated from already custom-rounded components
+             let total = el_amount + hpl_amount;
 
-    <button onclick="calculate()">ગણતરી કરો</button>
+             document.getElementById('one_day_pay').innerText = per_day.toLocaleString('en-IN', {minimumFractionDigits: 2});            document.getElementById('calc_el_days').innerText = final_el;            document.getElementById('calc_hpl_days').innerText = final_hpl;            document.getElementById('total_amt').innerText = total.toLocaleString('en-IN', {maximumFractionDigits: 0});            document.getElementById('w-result').style.display = 'block';
 
-    <div id="result">
-        <p>એક દિવસનો પગાર: <b>₹ <span id="one_day_pay"></span></b></p>
-        <p>ગણતરીમાં લીધેલ EL: <b><span id="calc_el_days"></span> દિવસ</b></p>
-        <p id="hpl_result_row">ગણતરીમાં લીધેલ HPL: <b><span id="calc_hpl_days"></span> દિવસ</b></p>
-        <hr>
-        <p class="total-amount">કુલ મળવાપાત્ર રકમ: ₹ <span id="total_amt"></span></p>
-    </div>
+            // વિગતવાર ગણતરી બ્રેકડાઉન લોજિક
+            let da_amount = basic * da_percent / 100;
 
-    <div class="note" id="note_text">
-        * નિયમ મુજબ EL + HPL મળીને વધુમાં વધુ 300 દિવસનું રૂપાંતર મળશે.<br>
-        * HPL માટે અડધો પગાર ગણવામાં આવ્યો છે.
-    </div>
-</div>
-
-<script>
-    function toggleHPL() {
-        let type = document.getElementById('case_type').value;
-        let hplGroup = document.getElementById('hpl_input_group');
-        let note = document.getElementById('note_text');
-        
-        if (type === 'resignation') {
-            hplGroup.style.opacity = '0.5';
-            document.getElementById('hpl_days').disabled = true;
-            note.innerHTML = "* રાજીનામાના કિસ્સામાં માત્ર EL ના 50% દિવસોનું જ રૂપાંતર મળે છે અને HPL ગણવામાં આવતી નથી.";
-        } else {
-            hplGroup.style.opacity = '1';
-            document.getElementById('hpl_days').disabled = false;
-            note.innerHTML = "* નિયમ મુજબ EL + HPL મળીને વધુમાં વધુ 300 દિવસનું રૂપાંતર મળશે.<br>* HPL માટે અડધો પગાર ગણવામાં આવ્યો છે.";
-        }
-    }
-
-    function calculate() {
-        let caseType = document.getElementById('case_type').value;
-        let basic = parseFloat(document.getElementById('basic').value);
-        let da_percent = parseFloat(document.getElementById('da_percent').value);
-        let el = parseInt(document.getElementById('el_days').value);
-        let hpl = parseInt(document.getElementById('hpl_days').value);
-
-        let total_monthly = basic + (basic * da_percent / 100);
-        let per_day = total_monthly / 30;
-
-        let final_el = 0;
-        let final_hpl = 0;
-        let el_amt = 0;
-        let hpl_amt = 0;
-
-        if (caseType === 'resignation') {
-            // Condition: 50% of EL, No HPL
-            final_el = el * 0.5;
-            final_hpl = 0;
-            document.getElementById('hpl_result_row').style.display = 'none';
-        } else {
-            // Normal Retirement Logic
-            final_el = Math.min(el, 300);
-            let remaining_for_hpl = 300 - final_el;
-            final_hpl = Math.min(hpl, remaining_for_hpl);
-            document.getElementById('hpl_result_row').style.display = 'block';
-        }
-
-        el_amt = final_el * per_day;
-        hpl_amt = final_hpl * (per_day / 2);
-        let total = el_amt + hpl_amt;
-
-        // Display
-        document.getElementById('one_day_pay').innerText = per_day.toFixed(2);
-        document.getElementById('calc_el_days').innerText = final_el;
-        document.getElementById('calc_hpl_days').innerText = final_hpl;
-        document.getElementById('total_amt').innerText = total.toLocaleString('en-IN', {maximumFractionDigits: 0});
-        document.getElementById('result').style.display = 'block';
-    }
-</script>
-
-</body>
-</html>
+            document.getElementById('calc_step_1').innerHTML = `1️⃣ <b>માસિક કુલ પગાર:</b> ₹${basic.toLocaleString('en-IN')} (મૂળ પગાર) + ₹${da_amount.toLocaleString('en-IN')} (${da_percent}% DA) = <b>₹${total_monthly.toLocaleString('en-IN')}</b>`;
+            document.getElementById('calc_step_2').innerHTML = `2️⃣ <b>એક દિવસનો પગાર (Round off):</b> ₹${total_monthly.toLocaleString('en-IN')} ÷ 30 દિવસ = <b>₹${per_day.toFixed(2)}</b>`;
+            document.getElementById('calc_step_3').innerHTML = `3️⃣ <b>EL રકમની ગણતરી (Round off):</b> ${final_el} દિવસ × ₹${per_day.toFixed(2)} = <b>₹${el_amount.toLocaleString('en-IN', {maximumFractionDigits:2})}</b>`;
+            
+            if (caseType !== 'resignation') {
+                document.getElementById('calc_step_4').innerHTML = `4️⃣ <b>HPL રકમની ગણતરી (Round off):</b> ${final_hpl} દિવસ × ₹${(per_day / 2).toFixed(2)} (અડધો પગાર) = <b>₹${hpl_amount.toLocaleString('en-IN', {maximumFractionDigits:2})}</b>`;
+                document.getElementById('calc_step_4').style.display = 'block';
+            } else {
+                document.getElementById('calc_step_4').style.display = 'none';
+            }
+            
+            document.getElementById('calc_step_5').innerHTML = `➡️ <b>કુલ રકમ (Summed):</b> ₹${el_amount.toLocaleString('en-IN', {maximumFractionDigits:2})} ${caseType !== 'resignation' ? '+ ₹' + hpl_amount.toLocaleString('en-IN', {maximumFractionDigits:2}) : ''} = <u>₹${total.toLocaleString('en-IN')}</u>`;
+        }    </script></body></html>

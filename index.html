@@ -28,7 +28,7 @@
              per_day = applyCustomRound(per_day);
 
              let final_el = 0;             let final_hpl = 0;
-             if (caseType === 'resignation') {                 final_el = el * 0.5;                 // Applying custom rounding to resignation EL days if it ends in .5
+             if (caseType === 'resignation') {                 final_el = Math.min(el * 0.5, 150);                 // Applying custom rounding to resignation EL days if it ends in .5
                  final_el = applyCustomRound(final_el);
                  final_hpl = 0;                 document.getElementById('hpl_result_row').style.display = 'none';              } else {                 final_el = Math.min(el, 300);                 let remaining_for_hpl = 300 - final_el;                 final_hpl = Math.min(hpl, remaining_for_hpl);                 document.getElementById('hpl_result_row').style.display = 'flex';              }
              // Calculate absolute values first

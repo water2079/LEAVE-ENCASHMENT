@@ -18,7 +18,7 @@
     <script>        function toggleHPL() {            let type = document.getElementById('case_type').value;            let hplGroup = document.getElementById('hpl_input_group');            let note = document.getElementById('note_text');                        if (type === 'resignation') {                hplGroup.style.opacity = '0.4';                document.getElementById('hpl_days').disabled = true;                document.getElementById('hpl_days').value = "";                note.innerHTML = "<b>નોંધ:</b> રાજીનામાના કિસ્સામાં માત્ર EL ના 50% દિવસોનું જ રૂપાંતર મળે છે અને HPL ગણવામાં આવતી નથી.";            } else {                hplGroup.style.opacity = '1';                document.getElementById('hpl_days').disabled = false;                document.getElementById('hpl_days').value = "";                note.innerHTML = "• નિયમ મુજબ EL + HPL મળીને વધુમાં વધુ 300 દિવસનું રૂપાંતર મળશે.<br>• HPL માટે અડધો પગાર ગણવામાં આવ્યો છે.";            }        }
          function calculate() {            let caseType = document.getElementById('case_type').value;            let basic = parseFloat(document.getElementById('basic').value) || 0;            let da_percent = parseFloat(document.getElementById('da_percent').value) || 0;            let el = parseInt(document.getElementById('el_days').value) || 0;            let hpl = parseInt(document.getElementById('hpl_days').value) || 0;
              if(basic === 0) {                 alert("કૃપા કરીને મૂળ પગાર દાખલ કરો.");                 return;              }
-             let total_monthly = basic + (basic * da_percent / 100);            let per_day = total_monthly / 30;            
+             let total_monthly = basic + (basic * da_percent / 100);            let per_day = total_monthly;            
              // Helper function for custom rounding logic (<= 0.50 rounds down, > 0.50 rounds up)
              function applyCustomRound(value) {
                  return (value % 1 <= 0.50) ? Math.floor(value) : Math.ceil(value);
@@ -32,8 +32,8 @@
                  final_el = applyCustomRound(final_el);
                  final_hpl = 0;                 document.getElementById('hpl_result_row').style.display = 'none';              } else {                 final_el = Math.min(el, 300);                 let remaining_for_hpl = 300 - final_el;                 final_hpl = Math.min(hpl, remaining_for_hpl);                 document.getElementById('hpl_result_row').style.display = 'flex';              }
              // Calculate absolute values first
-             let raw_el_amount = final_el * per_day;
-             let raw_hpl_amount = final_hpl * (per_day / 2);
+             let raw_el_amount = final_el * per_day/30;
+             let raw_hpl_amount = final_hpl * (per_day /60);
 
              // Apply custom rounding to intermediate calculations independently
              let el_amount = applyCustomRound(raw_el_amount);
